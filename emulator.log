@@ -1,0 +1,8 @@
+Starting Mednafen 0.9.48
+ Build information:
+   Compiled with gcc 7.2.0
+   Compiled against zlib 1.2.11, running with zlib 1.2.11(flags=0x000000a9)
+   Compiled against SDL 1.2.15, running with SDL 1.2.15
+   Running with libsndfile-1.0.28
+ Base directory: /home/mic/.mednafen
+Segmentation fault (core dumped)
