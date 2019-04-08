@@ -65,7 +65,6 @@ int main(void) {
         shadow[i].attr0 = ATTR0_HIDE;
     }
 
-
     while (1) {
         // Load the current state of the buttons
         currentButtons = BUTTONS;
@@ -90,17 +89,17 @@ int main(void) {
                 // Start the app by switching the state to APP_INIT.
                 if (KEY_DOWN(BUTTON_A, currentButtons) || KEY_DOWN(BUTTON_B, currentButtons) || KEY_DOWN(BUTTON_LEFT, currentButtons) || KEY_DOWN(BUTTON_RIGHT, currentButtons) || KEY_DOWN(BUTTON_UP, currentButtons) || KEY_DOWN(BUTTON_LEFT, currentButtons) || KEY_DOWN(BUTTON_START, currentButtons)) {
                     state = APP_INIT;
-                    int x = 1;
+                    /*int x = 1;
                     int y = 1;
                     while (y <= 160) {
                         waitForVBlank();
-                        drawImageDMA(x, y, 240, 160, title2);
-                        drawRectDMA(x - 1, y, 240, 1, BLACK);
-                        drawRectDMA(x, y - 1, 1, 160, BLACK);
+                        drawImageDMA(x, y, 240, 160 - y, title2);
+                        drawRectDMA(x - 1, y, 240 - x, 1, BLACK);
+                        drawRectDMA(x, y - 1, 1, 160 - y, BLACK);
                         x++;
                         y++;
-                    }
-                    fillScreenDMA(WHITE);
+                    }*/
+                    fillScreenDMA(GRAY);
                 }
 
                 break;

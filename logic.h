@@ -2,13 +2,13 @@
 #define LOGIC_H
 
 #include "gba.h"
+#include <stdlib.h>
 
 #define dec(num) (((num) - 1 >= 0) ? (num) - 1 : 8) // 8 is the last index of our lefts array
 #define inc(num) (((num) + 1 <= 8) ? (num) + 1 : 0)
 // Note that this is undefined if we use something like a++
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define max(a, b) ((a) > (b) ? (a) : (b))
-#define abs(a) ((a) >= 0 ? (a) : (-a))
 
 #define a appState
 #define n nextAppState
@@ -30,7 +30,8 @@
         n.message = 6; \
     } \
     n.points += (16 - abs(dist)) * 2; \
-    n.lefts[n.lefts_i] = min(160, n.lefts[dec(n.lefts_i)]) + randint(0, 50); \
+    n.lefts[n.lefts_i] = randint(0, 150); \
+    /*n.lefts[n.lefts_i] = max(160, n.lefts[dec(n.lefts_i)]) + randint(0, 50);*/ \
     n.lefts_i = inc(n.lefts_i);
 
 extern volatile OamEntry shadow[128];

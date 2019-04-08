@@ -13,6 +13,14 @@ void initializeAppState(AppState* appState) {
     appState->Bs = create_list();*/
     appState->gameOver = 0;
     for (int i = 0; i < 9; i++) {
+        appState->lefts[i] = randint(0, 160);
+        appState->downs[i] = randint(0, 160);
+        appState->ups[i] = randint(0, 160);
+        appState->rights[i] = randint(0, 160);
+        appState->As[i] = randint(0, 160);
+        appState->Bs[i] = randint(0, 160);
+    }
+    /*for (int i = 0; i < 9; i++) {
         if (i == 0) {
             appState->lefts[i] = randint(160, 210);
             appState->downs[i] = randint(160, 210);
@@ -29,7 +37,7 @@ void initializeAppState(AppState* appState) {
             appState->As[i] = randint(appState->As[i - 1], appState->As[i - 1] + 50);
             appState->Bs[i] = randint(appState->Bs[i - 1], appState->Bs[i - 1] + 50);
         }
-    }
+    }*/
     a->lefts_i = a->downs_i = a->ups_i = a->rights_i = a->As_i = a->Bs_i = a->message = a->streak = a->points = 0;
 }
 
