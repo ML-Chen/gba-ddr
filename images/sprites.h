@@ -1,7 +1,7 @@
 /*
  * Exported with nin10kit v1.7
  * Invocation command was nin10kit --mode=sprites --bpp=4 --for_bitmap --transparent=FFFFFF sprites left.png down.png up.png right.png A.png B.png 
- * Time-stamp: Sunday 04/07/2019, 02:41:02
+ * Time-stamp: Monday 04/08/2019, 04:04:56
  * 
  * Image Information
  * -----------------
