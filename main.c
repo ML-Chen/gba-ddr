@@ -100,7 +100,7 @@ int main(void) {
                         x++;
                         y++;
                     }
-                    // fillScreenDMA(WHITE);
+                    fillScreenDMA(WHITE);
                 }
 
                 break;
@@ -114,23 +114,24 @@ int main(void) {
                 for (int i = 0; i < 10; i++) {
                     left[i].attr0 = 0 | SPRITES_PALETTE_TYPE | LEFT_SPRITE_SHAPE;
                     left[i].attr1 = 0 | SPRITES_PALETTE_TYPE | LEFT_SPRITE_SHAPE;
-                    left[i].attr2 = PRIORITY(0) | LEFT_PALETTE_ID | LEFT_ID;
+                    left[i].attr2 = LEFT_PALETTE_ID | LEFT_ID;
                     down[i].attr0 = 0 | SPRITES_PALETTE_TYPE | DOWN_SPRITE_SHAPE;
                     down[i].attr1 = 32 | SPRITES_PALETTE_TYPE | DOWN_SPRITE_SHAPE;
-                    down[i].attr2 = PRIORITY(0) | DOWN_PALETTE_ID | DOWN_ID;
+                    down[i].attr2 = DOWN_PALETTE_ID | DOWN_ID;
                     up[i].attr0 = 0 | SPRITES_PALETTE_TYPE | UP_SPRITE_SHAPE;
                     up[i].attr1 = 64 | SPRITES_PALETTE_TYPE | UP_SPRITE_SHAPE;
-                    up[i].attr2 = PRIORITY(0) | UP_PALETTE_ID | UP_ID;
+                    up[i].attr2 = 0 | UP_PALETTE_ID | UP_ID;
                     right[i].attr0 = 0 | SPRITES_PALETTE_TYPE | RIGHT_SPRITE_SHAPE;
                     right[i].attr1 = 96 | SPRITES_PALETTE_TYPE | RIGHT_SPRITE_SHAPE;
-                    right[i].attr2 = PRIORITY(0) | RIGHT_PALETTE_ID | RIGHT_ID;
+                    right[i].attr2 = RIGHT_PALETTE_ID | RIGHT_ID;
                     A[i].attr0 = 0 | SPRITES_PALETTE_TYPE | A_SPRITE_SHAPE;
                     A[i].attr1 = 128 | SPRITES_PALETTE_TYPE | A_SPRITE_SHAPE;
-                    A[i].attr2 = PRIORITY(0) | A_PALETTE_ID | A_ID;
+                    A[i].attr2 = 0 | A_PALETTE_ID | A_ID;
                     B[i].attr0 = 0 | SPRITES_PALETTE_TYPE | B_SPRITE_SHAPE;
+                    B[i].attr2 = 0 | B_PALETTE_ID | B_ID;
                     B[i].attr1 = 160 | SPRITES_PALETTE_TYPE | B_SPRITE_SHAPE;
-                    B[i].attr2 = PRIORITY(0) | B_PALETTE_ID | B_ID;
                 }
+
                 state = APP;
                 break;
             case APP:
