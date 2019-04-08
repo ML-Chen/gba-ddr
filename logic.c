@@ -13,12 +13,12 @@ void initializeAppState(AppState* appState) {
     appState->Bs = create_list();*/
     appState->gameOver = 0;
     for (int i = 0; i < 9; i++) {
-        appState->lefts[i] = randint(0, 160);
-        appState->downs[i] = randint(0, 160);
-        appState->ups[i] = randint(0, 160);
-        appState->rights[i] = randint(0, 160);
-        appState->As[i] = randint(0, 160);
-        appState->Bs[i] = randint(0, 160);
+        appState->lefts[i] = randint(0, 120);
+        appState->downs[i] = randint(0, 120);
+        appState->ups[i] = randint(0, 120);
+        appState->rights[i] = randint(0, 120);
+        appState->As[i] = randint(0, 120);
+        appState->Bs[i] = randint(0, 120);
     }
     /*for (int i = 0; i < 9; i++) {
         if (i == 0) {
@@ -77,22 +77,22 @@ AppState processAppState(AppState *currentAppState, u32 keysPressedBefore, u32 k
 
     AppState nextAppState = *currentAppState;
 
-    if (KEY_JUST_PRESSED(BUTTON_LEFT, keysPressedNow, keysPressedBefore) || n.lefts[n.lefts_i] < -32) {
+    if (KEY_JUST_PRESSED(BUTTON_LEFT, keysPressedNow, keysPressedBefore) || n.lefts[n.lefts_i] < 0) {
         handleButton(lefts, lefts_i)
     }
-    if (KEY_JUST_PRESSED(BUTTON_DOWN, keysPressedNow, keysPressedBefore) || n.downs[n.downs_i] < -32) {
+    if (KEY_JUST_PRESSED(BUTTON_DOWN, keysPressedNow, keysPressedBefore) || n.downs[n.downs_i] < 0) {
         handleButton(downs, downs_i)
     }
-    if (KEY_JUST_PRESSED(BUTTON_UP, keysPressedNow, keysPressedBefore) || n.ups[n.ups_i] < -32) {
+    if (KEY_JUST_PRESSED(BUTTON_UP, keysPressedNow, keysPressedBefore) || n.ups[n.ups_i] < 0) {
         handleButton(ups, ups_i)
     }
-    if (KEY_JUST_PRESSED(BUTTON_RIGHT, keysPressedNow, keysPressedBefore) || n.rights[n.rights_i] < -32) {
+    if (KEY_JUST_PRESSED(BUTTON_RIGHT, keysPressedNow, keysPressedBefore) || n.rights[n.rights_i] < 0) {
         handleButton(rights, rights_i)
     }
-    if (KEY_JUST_PRESSED(BUTTON_A, keysPressedNow, keysPressedBefore) || n.As[n.As_i] < -32) {
+    if (KEY_JUST_PRESSED(BUTTON_A, keysPressedNow, keysPressedBefore) || n.As[n.As_i] < 0) {
         handleButton(As, As_i)
     }
-    if (KEY_JUST_PRESSED(BUTTON_B, keysPressedNow, keysPressedBefore) || n.Bs[n.Bs_i] < -32) {
+    if (KEY_JUST_PRESSED(BUTTON_B, keysPressedNow, keysPressedBefore) || n.Bs[n.Bs_i] < 0) {
         handleButton(Bs, Bs_i)
     }
 
