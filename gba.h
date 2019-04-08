@@ -1,11 +1,6 @@
 #ifndef GBA_H
 #define GBA_H
 
-// Check whether an x coordinate would be on the screen.
-#define onscreenX(x) ((x) >= 0 && (x) <= 240)
-#define onscreenY(y) ((y) >= 0 && (y) <= 160)
-#define onscreen(x, y) (onscreenX(x) && onscreenY(y))
-
 // ---------------------------------------------------------------------------
 //                       USEFUL TYPEDEFS
 // ---------------------------------------------------------------------------
@@ -21,7 +16,7 @@ typedef unsigned char u8;
 // ---------------------------------------------------------------------------
 //                       MODE3 MACROS
 // ---------------------------------------------------------------------------
-#define OFFSET(x, y, rowlen) ((x)+(rowlen)*(y))
+#define OFFSET(r, c, rowlen) ((c)+(rowlen)*(r))
 
 #define REG_DISPCNT  *(volatile unsigned short *) 0x4000000
 #define MODE3 3
@@ -167,7 +162,7 @@ typedef struct {
 #define OAMMEM  ((OamEntry*)0x7000000)
 #define SPRITEPAL ((u16 *)0x5000200)
 typedef struct { u16 tileimg[8192]; } charblock;
-#define CHARBLOCKBASE ((charblock*) 0x6000000)
+#define CHARBLOCKBASE ((charblock*)0x6000000)
 #define ATTR0_REG (0<<8) // Default
 #define ATTR0_HIDE (2<<8) // If set the sprite is hidden, by default all sprites are SHOWN
 #define ATTR0_MOSAIC (1<<12) // C controls Mosaic effect if set the sprite will appear pixelated.
