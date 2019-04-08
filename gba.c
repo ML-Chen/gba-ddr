@@ -26,14 +26,20 @@ int randint(int min, int max) {
 }
 
 void setPixel(int x, int y, u16 color) { //
-    videoBuffer[x * 240 + y] = color;
+    if (onscreen(x, y))
+        videoBuffer[x * 240 + y] = color;
 }
 
+// Draw a rectangle using DMA. Won't draw offscreen pixels.
 void drawRectDMA(int x, int y, int width, int height, volatile u16 color) { //
-    for (int r = x; r < x + height; r++) {
+    int onscreenWidth = x > 0 ? 240 - (x + width) : x + width;
+    int onscreenHeight = y > 0 ? 160 - (y + height) : y + height;
+    int onscreenX = x > 0 ? x : 0;
+    int onscreenY = y > 0 ? y : 0;
+    for (int row = 0; row < onscreenHeight; row++) {
         DMA[3].src = &color;
-        DMA[3].dst = &videoBuffer[OFFSET(r, y, 240)];
-        DMA[3].cnt = width | DMA_ON | DMA_SOURCE_FIXED;
+        DMA[3].dst = &videoBuffer[OFFSET(onscreenX, onscreenY + row, 240)];
+        DMA[3].cnt = onscreenWidth | DMA_ON | DMA_SOURCE_FIXED;
     }
 }
 
@@ -44,10 +50,21 @@ void drawFullScreenImageDMA(const u16 *image) { //
 }
 
 void drawImageDMA(int x, int y, int width, int height, const u16 *image) { //
-    for (int r = x; r < x + height; r++) {
-        DMA[3].src = image + (r * width);
-        DMA[3].dst = &videoBuffer[OFFSET(r, y, 240)];
-        DMA[3].cnt = width | DMA_ON | DMA_SOURCE_INCREMENT | DMA_DESTINATION_INCREMENT;
+    int onscreenWidth = x > 0 ? 240 - (x + width) : x + width;
+    int onscreenHeight = y > 0 ? 160 - (y + height) : y + height;
+    int onscreenX = x > 0 ? x : 0;
+    int onscreenY = y > 0 ? y : 0;
+    for (int row = 0; row < onscreenHeight; row++) {
+        if (x < 0 && y < 0)
+            DMA[3].src = image + OFFSET(-x, -y + row, width);
+        else if (x < 0)
+            DMA[3].src = image + OFFSET(-x, row, width);
+        else if (y < 0)
+            DMA[3].src = image + OFFSET(0, -y + row, width);
+        else
+            DMA[3].src = image + OFFSET(0, row, width);
+        DMA[3].dst = &videoBuffer[OFFSET(onscreenX, onscreenY, 240)];
+        DMA[3].cnt = onscreenWidth | DMA_ON | DMA_SOURCE_INCREMENT | DMA_DESTINATION_INCREMENT;
     }
 }
 
