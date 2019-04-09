@@ -49,3 +49,6 @@ Initializing video...
   Checking maximum texture size...
    Apparently it is at least: 8192 x 8192
   Using GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV for texture source data.
+
+Signal has been caught and dealt with: SIGINT
+How DARE you interrupt me!
