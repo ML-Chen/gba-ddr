@@ -3,14 +3,6 @@
 
 #include "logic.h"
 
-extern volatile OamEntry shadow[128];
-extern volatile OamEntry *left;
-extern volatile OamEntry *down;
-extern volatile OamEntry *up;
-extern volatile OamEntry *right;
-extern volatile OamEntry *A;
-extern volatile OamEntry *B;
-
 // This function will be used to draw everything about the state of your app
 // including the background and whatnot.
 void fullDrawAppState(AppState *state);

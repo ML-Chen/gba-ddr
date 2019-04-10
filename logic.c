@@ -4,13 +4,6 @@ void initializeAppState(AppState* appState) {
     // TA-TODO: Initialize everything that's part of this AppState struct here.
     // Suppose the struct contains random values, make sure everything gets
     // the value it should have when the app begins.
-    /*appState->lefts = create_list();
-    push_front(appState->lefts, 240);
-    appState->downs = create_list();
-    appState->ups = create_list();
-    appState->rights = create_list();
-    appState->As = create_list();
-    appState->Bs = create_list();*/
     appState->gameOver = 0;
     for (int i = 0; i < 9; i++) {
         appState->lefts[i] = randint(0, 160);
@@ -20,24 +13,6 @@ void initializeAppState(AppState* appState) {
         appState->As[i] = randint(0, 160);
         appState->Bs[i] = randint(0, 160);
     }
-    /*for (int i = 0; i < 9; i++) {
-        if (i == 0) {
-            appState->lefts[i] = randint(160, 210);
-            appState->downs[i] = randint(160, 210);
-            appState->ups[i] = randint(160, 210);
-            appState->rights[i] = randint(160, 210);
-            appState->As[i] = randint(160, 210);
-            appState->Bs[i] = randint(160, 210);
-        }
-        else {
-            appState->lefts[i] = randint(appState->lefts[i - 1], appState->lefts[i - 1] + 50);
-            appState->rights[i] = randint(appState->rights[i - 1], appState->rights[i - 1] + 50);
-            appState->downs[i] = randint(appState->downs[i - 1], appState->downs[i - 1] + 50);
-            appState->ups[i] = randint(appState->ups[i - 1], appState->ups[i - 1] + 50);
-            appState->As[i] = randint(appState->As[i - 1], appState->As[i - 1] + 50);
-            appState->Bs[i] = randint(appState->Bs[i - 1], appState->Bs[i - 1] + 50);
-        }
-    }*/
     a->lefts_i = a->downs_i = a->ups_i = a->rights_i = a->As_i = a->Bs_i = a->message = a->streak = a->points = 0;
 }
 

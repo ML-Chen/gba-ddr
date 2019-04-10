@@ -34,14 +34,6 @@
     /*n.lefts[n.lefts_i] = max(160, n.lefts[dec(n.lefts_i)]) + randint(0, 50);*/ \
     n.lefts_i = inc(n.lefts_i);
 
-extern volatile OamEntry shadow[128];
-extern volatile OamEntry *left;
-extern volatile OamEntry *down;
-extern volatile OamEntry *up;
-extern volatile OamEntry *right;
-extern volatile OamEntry *A;
-extern volatile OamEntry *B;
-
 typedef struct {
     // Store whether or not the game is over in this member:
     int gameOver;
@@ -56,13 +48,6 @@ typedef struct {
     * int points;
     *
     */
-    /*
-    List *lefts;
-    List *downs;
-    List *ups;
-    List *rights;
-    List *As;
-    List *Bs;*/
     int lefts[9];
     int downs[9];
     int ups[9];

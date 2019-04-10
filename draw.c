@@ -18,7 +18,6 @@
 void fullDrawAppState(AppState *state) {
     // TA-TODO: IMPLEMENT.
     UNUSED(state);
-    
 }
 
 // This function will be used to undraw (i.e. erase) things that might

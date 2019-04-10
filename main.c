@@ -108,28 +108,7 @@ int main(void) {
                 initializeAppState(&currentAppState);
 
                 // Draw the initial state of the app
-                // fullDrawAppState(&currentAppState);
-                // attr0 has y coordinate, attr1 has x coordinate
-                for (int i = 0; i < 10; i++) {
-                    left[i].attr0 = 0 | SPRITES_PALETTE_TYPE | LEFT_SPRITE_SHAPE;
-                    left[i].attr1 = 0 | SPRITES_PALETTE_TYPE | LEFT_SPRITE_SHAPE;
-                    left[i].attr2 = LEFT_PALETTE_ID | LEFT_ID;
-                    down[i].attr0 = 0 | SPRITES_PALETTE_TYPE | DOWN_SPRITE_SHAPE;
-                    down[i].attr1 = 32 | SPRITES_PALETTE_TYPE | DOWN_SPRITE_SHAPE;
-                    down[i].attr2 = DOWN_PALETTE_ID | DOWN_ID;
-                    up[i].attr0 = 0 | SPRITES_PALETTE_TYPE | UP_SPRITE_SHAPE;
-                    up[i].attr1 = 64 | SPRITES_PALETTE_TYPE | UP_SPRITE_SHAPE;
-                    up[i].attr2 = 0 | UP_PALETTE_ID | UP_ID;
-                    right[i].attr0 = 0 | SPRITES_PALETTE_TYPE | RIGHT_SPRITE_SHAPE;
-                    right[i].attr1 = 96 | SPRITES_PALETTE_TYPE | RIGHT_SPRITE_SHAPE;
-                    right[i].attr2 = RIGHT_PALETTE_ID | RIGHT_ID;
-                    A[i].attr0 = 0 | SPRITES_PALETTE_TYPE | A_SPRITE_SHAPE;
-                    A[i].attr1 = 128 | SPRITES_PALETTE_TYPE | A_SPRITE_SHAPE;
-                    A[i].attr2 = 0 | A_PALETTE_ID | A_ID;
-                    B[i].attr0 = 0 | SPRITES_PALETTE_TYPE | B_SPRITE_SHAPE;
-                    B[i].attr2 = 0 | B_PALETTE_ID | B_ID;
-                    B[i].attr1 = 160 | SPRITES_PALETTE_TYPE | B_SPRITE_SHAPE;
-                }
+                fullDrawAppState(&currentAppState);
 
                 state = APP;
                 break;
@@ -144,17 +123,7 @@ int main(void) {
                 undrawAppState(&currentAppState);
 
                 // Draw the current state
-                // drawAppState(&nextAppState);
-                // Set y coordinates of sprites
-                for (int i = 1; i < 10; i++) {
-                    left[i].attr0 = currentAppState.lefts[i - 1] | SPRITES_PALETTE_TYPE | LEFT_SPRITE_SHAPE;
-                    down[i].attr0 = currentAppState.downs[i - 1] | SPRITES_PALETTE_TYPE | DOWN_SPRITE_SHAPE;
-                    up[i].attr0 = currentAppState.ups[i - 1] | SPRITES_PALETTE_TYPE | UP_SPRITE_SHAPE;
-                    right[i].attr0 = currentAppState.rights[i - 1] | SPRITES_PALETTE_TYPE | RIGHT_SPRITE_SHAPE;
-                    A[i].attr0 = currentAppState.As[i - 1] | SPRITES_PALETTE_TYPE | A_SPRITE_SHAPE;
-                    B[i].attr0 = currentAppState.Bs[i - 1] | SPRITES_PALETTE_TYPE | B_SPRITE_SHAPE;
-                }
-                drawSprites();
+                drawAppState(&nextAppState);
 
                 // Now set the current state as the next state for the next iter.
                 currentAppState = nextAppState;
@@ -180,10 +149,6 @@ int main(void) {
                 }
                 break;
         }
-
-        DMA[3].src = shadow;
-        DMA[3].dst = OAMMEM;
-        DMA[3].cnt = 128*4 | DMA_ON;
 
         // Store the current state of the buttons
         previousButtons = currentButtons;
