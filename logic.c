@@ -5,7 +5,13 @@ void initializeAppState(AppState* appState) {
     // Suppose the struct contains random values, make sure everything gets
     // the value it should have when the app begins.
     appState->gameOver = 0;
-    for (int i = 0; i < 9; i++) {
+    appState->lefts[0] = 0;
+    appState->downs[0] = 0;
+    appState->ups[0] = 0;
+    appState->rights[0] = 0;
+    appState->As[0] = 0;
+    appState->Bs[0] = 0;
+    for (int i = 1; i < 10; i++) {
         appState->lefts[i] = randint(0, 160);
         appState->downs[i] = randint(0, 160);
         appState->ups[i] = randint(0, 160);
@@ -72,7 +78,7 @@ AppState processAppState(AppState *currentAppState, u32 keysPressedBefore, u32 k
     }
 
     if (vBlankCounter % 2 == 0) {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 1; i < 10; i++) {
             n.lefts[i]--;
             n.downs[i]--;
             n.ups[i]--;

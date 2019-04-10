@@ -67,7 +67,7 @@ int main(void) {
                         x++;
                         y++;
                     }*/
-                    fillScreenDMA(GRAY);
+                    fillScreenDMA(BLACK);
                 }
 
                 break;

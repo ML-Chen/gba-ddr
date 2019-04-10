@@ -4,9 +4,10 @@
 #include "gba.h"
 #include <stdlib.h>
 
-#define dec(num) (((num) - 1 >= 0) ? (num) - 1 : 8) // 8 is the last index of our lefts array
-#define inc(num) (((num) + 1 <= 8) ? (num) + 1 : 0)
-// Note that this is undefined if we use something like a++
+#define dec(num) (((num) - 1 > 0) ? (num) - 1 : 9) // 9 is the last index of our lefts array
+#define inc(num) (((num) + 1 < 10) ? (num) + 1 : 1)
+
+// Note that these have undefined behavior if we use something like a++
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define max(a, b) ((a) > (b) ? (a) : (b))
 
@@ -48,19 +49,19 @@ typedef struct {
     * int points;
     *
     */
-    int lefts[9];
-    int downs[9];
-    int ups[9];
-    int rights[9];
-    int As[9];
-    int Bs[9];
-    int lefts_i; // index of the minimum position in lefts
+    int lefts[10];
+    int downs[10];
+    int ups[10];
+    int rights[10];
+    int As[10];
+    int Bs[10];
+    int lefts_i; // index of the minimum position in lefts (1 to 9)
     int downs_i;
     int ups_i;
     int rights_i;
     int As_i;
     int Bs_i;
-    int message; // e.g., sugoi! warui!
+    int message; // e.g., awesome! terrible!
     int streak;
     int points;
 } AppState;
