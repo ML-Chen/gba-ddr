@@ -147,28 +147,4 @@ void drawCenteredString(int col, int row, int width, int height, char *str, u16 
 // This is in the font.c file. You can replace the font if you want.
 extern const unsigned char fontdata_6x8[12288];
 
-// ---------------------------------------------------------------------------
-//                       SPRITES
-// ---------------------------------------------------------------------------
-#define OBJ_ENABLE (1<<12)
-
-typedef struct {
-   u16 attr0;
-   u16 attr1;
-   u16 attr2;
-   u16 fill;
-} OamEntry;
-
-#define OAMMEM  ((OamEntry*)0x7000000)
-#define SPRITEPAL ((u16 *)0x5000200)
-typedef struct { u16 tileimg[8192]; } charblock;
-#define CHARBLOCKBASE ((charblock*)0x6000000)
-#define ATTR0_REG (0<<8) // Default
-#define ATTR0_HIDE (2<<8) // If set the sprite is hidden, by default all sprites are SHOWN
-#define ATTR0_MOSAIC (1<<12) // C controls Mosaic effect if set the sprite will appear pixelated.
-#define ATTR1_NOFLIP 0
-#define ATTR1_HFLIP (1<<12)
-#define ATTR1_VFLIP (1<<13)
-#define PRIORITY(pri) ((pri) << 10) // Smaller priorities drawn on top. Priority is 2 bits.
-
 #endif
