@@ -26,7 +26,7 @@ int randint(int min, int max) {
 }
 
 void setPixel(int x, int y, u16 color) { //
-    videoBuffer[x * 240 + y] = color;
+    videoBuffer[y * 240 + x] = color;
 }
 
 void drawRectDMA(int x, int y, int width, int height, volatile u16 color) { //
