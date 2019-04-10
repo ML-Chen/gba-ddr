@@ -32,7 +32,7 @@ int main(void) {
     // We store the current and previous values of the button input.
     u32 previousButtons = BUTTONS;
     u32 currentButtons = BUTTONS;
-    
+
     while (1) {
         // Load the current state of the buttons
         currentButtons = BUTTONS;
@@ -55,7 +55,7 @@ int main(void) {
             case START_NODRAW:
                 // TA-TODO: Check for a button press here to start the app.
                 // Start the app by switching the state to APP_INIT.
-                if (KEY_DOWN(BUTTON_A, currentButtons) || KEY_DOWN(BUTTON_B, currentButtons) || KEY_DOWN(BUTTON_LEFT, currentButtons) || KEY_DOWN(BUTTON_RIGHT, currentButtons) || KEY_DOWN(BUTTON_UP, currentButtons) || KEY_DOWN(BUTTON_LEFT, currentButtons) || KEY_DOWN(BUTTON_START, currentButtons)) {
+                if (anyButtonPressed(currentButtons, previousButtons)) {
                     state = APP_INIT;
                     /*int x = 1;
                     int y = 1;
@@ -112,7 +112,7 @@ int main(void) {
                 break;
             case APP_EXIT_NODRAW:
                 // TA-TODO: Check for a button press here to go back to the start screen
-                if (KEY_DOWN(BUTTON_A, currentButtons) || KEY_DOWN(BUTTON_B, currentButtons) || KEY_DOWN(BUTTON_LEFT, currentButtons) || KEY_DOWN(BUTTON_RIGHT, currentButtons) || KEY_DOWN(BUTTON_UP, currentButtons) || KEY_DOWN(BUTTON_LEFT, currentButtons) || KEY_DOWN(BUTTON_START, currentButtons)) {
+                if (anyButtonPressed(currentButtons, previousButtons)) {
                     state = START;
                 }
                 break;
