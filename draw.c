@@ -32,10 +32,10 @@ void undrawAppState(AppState *state) {
         int x = state->title.x;
         int y = state->title.y;
         
-        drawRectDMA(x - 1, y, 1, TITLE2_HEIGHT, BLACK);
-        drawRectDMA(x + TITLE2_WIDTH + 1, y, 1, TITLE2_HEIGHT, BLACK);
-        drawRectDMA(x, y - 1, TITLE2_WIDTH, 1, BLACK);
-        drawRectDMA(x, y + TITLE2_HEIGHT + 1, TITLE2_WIDTH, 1, BLACK);
+        drawRectDMA(x - 1, y, 2, TITLE2_HEIGHT, BLACK); // left side
+        drawRectDMA(x + TITLE2_WIDTH - 1, y, 2, TITLE2_HEIGHT, BLACK); // right side
+        drawRectDMA(x, y - 1, TITLE2_WIDTH, 1, BLACK); // top
+        drawRectDMA(x, y + TITLE2_HEIGHT - 1, TITLE2_WIDTH, 2, BLACK); // bottom
     }
     if (state->ingame) {
         for (int i = 0; i < ARRSIZE; i++) {
@@ -71,7 +71,7 @@ void drawAppState(AppState *state) {
             case 3: messageStr = "YOSHI!"; break;
             case 4: messageStr = "warui"; break;
             case 5: messageStr = "ganbatte!"; break;
-            case 6: messageStr = "hwaiting!"; break;
+            case 6: messageStr = "fighting!"; break;
             default: messageStr = "";
         }
         char streakStr[20];

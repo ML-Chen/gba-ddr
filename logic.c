@@ -61,8 +61,8 @@ AppState processAppState(AppState *currentAppState, u32 keysPressedBefore, u32 k
     if (!currentAppState->ingame) {
         int x = n.title.x;
         int y = n.title.y;
-        if (x < 0 || x + TITLE2_WIDTH > 240) n.title.vx *= -1;
-        if (y < 0 || y + TITLE2_HEIGHT > 160) n.title.vy *= -1;
+        if (x <= 0 || x + TITLE2_WIDTH >= 240) n.title.vx *= -1;
+        if (y <= 0 || y + TITLE2_HEIGHT >= 160) n.title.vy *= -1;
 
         n.title.x += n.title.vx;
         n.title.y += n.title.vy;
