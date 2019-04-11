@@ -4,12 +4,14 @@
 #include "gba.h"
 #include <stdlib.h>
 
-#define dec(num) (((num) - 1 > 0) ? (num) - 1 : 9) // 9 is the last index of our lefts array
-#define inc(num) (((num) + 1 < 10) ? (num) + 1 : 1)
+#define dec(num) (((num) - 1 > 0) ? (num) - 1 : ARRSIZE - 1)
+#define inc(num) (((num) + 1 < ARRSIZE) ? (num) + 1 : 1)
 
 // Note that these have undefined behavior if we use something like a++
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define max(a, b) ((a) > (b) ? (a) : (b))
+
+#define ARRSIZE 3
 
 #define a appState
 #define n nextAppState
@@ -31,8 +33,7 @@
         n.message = 6; \
     } \
     n.points += (16 - abs(dist)) * 2; \
-    n.lefts[n.lefts_i] = randint(0, 150); \
-    /*n.lefts[n.lefts_i] = max(160, n.lefts[dec(n.lefts_i)]) + randint(0, 50);*/ \
+    n.lefts[n.lefts_i] = max(160, n.lefts[dec(n.lefts_i)]) + randint(0, 50); \
     n.lefts_i = inc(n.lefts_i);
 
 typedef struct {
@@ -49,12 +50,12 @@ typedef struct {
     * int points;
     *
     */
-    int lefts[10];
-    int downs[10];
-    int ups[10];
-    int rights[10];
-    int As[10];
-    int Bs[10];
+    int lefts[ARRSIZE];
+    int downs[ARRSIZE];
+    int ups[ARRSIZE];
+    int rights[ARRSIZE];
+    int As[ARRSIZE];
+    int Bs[ARRSIZE];
     int lefts_i; // index of the minimum position in lefts (1 to 9)
     int downs_i;
     int ups_i;

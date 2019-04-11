@@ -57,7 +57,7 @@ int main(void) {
                 // Start the app by switching the state to APP_INIT.
                 if (anyButtonPressed(currentButtons, previousButtons)) {
                     state = APP_INIT;
-                    /*int x = 1;
+                    int x = 1;
                     int y = 1;
                     while (y <= 160) {
                         waitForVBlank();
@@ -66,7 +66,7 @@ int main(void) {
                         drawRectDMA(x, y - 1, 1, 160 - y, BLACK);
                         x++;
                         y++;
-                    }*/
+                    }
                     fillScreenDMA(BLACK);
                 }
 

@@ -11,15 +11,15 @@ void initializeAppState(AppState* appState) {
     appState->rights[0] = 0;
     appState->As[0] = 0;
     appState->Bs[0] = 0;
-    for (int i = 1; i < 10; i++) {
-        appState->lefts[i] = randint(0, 160);
-        appState->downs[i] = randint(0, 160);
-        appState->ups[i] = randint(0, 160);
-        appState->rights[i] = randint(0, 160);
-        appState->As[i] = randint(0, 160);
-        appState->Bs[i] = randint(0, 160);
+    for (int i = 1; i < ARRSIZE; i++) {
+        appState->lefts[i] = a->lefts[i - 1] + randint(50, 160);
+        appState->downs[i] = a->downs[i - 1] + randint(50, 160);
+        appState->ups[i] = a->ups[i - 1] + randint(50, 160);
+        appState->rights[i] = a->rights[i - 1] + randint(50, 160);
+        appState->As[i] = a->As[i - 1] + randint(50, 160);
+        appState->Bs[i] = a->Bs[i - 1] + randint(50, 160);
     }
-    a->lefts_i = a->downs_i = a->ups_i = a->rights_i = a->As_i = a->Bs_i = a->message = a->streak = a->points = 0;
+    a->lefts_i = a->downs_i = a->ups_i = a->rights_i = a->As_i = a->Bs_i = 1; a->message = a->streak = a->points = 0;
 }
 
 // TA-TODO: Add any process functions for sub-elements of your app here.
@@ -77,8 +77,8 @@ AppState processAppState(AppState *currentAppState, u32 keysPressedBefore, u32 k
         handleButton(Bs, Bs_i)
     }
 
-    if (vBlankCounter % 5 == 0) {
-        for (int i = 1; i < 10; i++) {
+    if (vBlankCounter % 2 == 0) {
+        for (int i = 1; i < ARRSIZE; i++) {
             n.lefts[i]--;
             n.downs[i]--;
             n.ups[i]--;

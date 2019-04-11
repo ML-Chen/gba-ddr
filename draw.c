@@ -18,11 +18,11 @@
 // including the background and whatnot.
 void fullDrawAppState(AppState *state) {
     // TA-TODO: IMPLEMENT.
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < ARRSIZE; i++) {
         drawImageDMA(0, state->lefts[i], 32, 32, left);
         drawImageDMA(32, state->downs[i], 32, 32, down);
-        drawImageDMA(64, state->ups[i], 32, 32, up);
-        drawImageDMA(96, state->rights[i], 32, 32, right);
+        // drawImageDMA(64, state->ups[i], 32, 32, up);
+        // drawImageDMA(96, state->rights[i], 32, 32, right);
         drawImageDMA(128, state->As[i], 32, 32, A);
         drawImageDMA(160, state->Bs[i], 32, 32, B);
     }
@@ -32,11 +32,11 @@ void fullDrawAppState(AppState *state) {
 // move in a frame. E.g. in a Snake game, erase the Snake, the food & the score.
 void undrawAppState(AppState *state) {
     // TA-TODO: IMPLEMENT.
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < ARRSIZE; i++) {
         drawRectDMA(0, state->lefts[i], 32, 32, BLACK);
         drawRectDMA(32, state->downs[i], 32, 32, BLACK);
-        drawRectDMA(64, state->ups[i], 32, 32, BLACK);
-        drawRectDMA(96, state->rights[i], 32, 32, BLACK);
+        // drawRectDMA(64, state->ups[i], 32, 32, BLACK);
+        // drawRectDMA(96, state->rights[i], 32, 32, BLACK);
         drawRectDMA(128, state->As[i], 32, 32, BLACK);
         drawRectDMA(160, state->Bs[i], 32, 32, BLACK);
     }
