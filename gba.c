@@ -53,6 +53,16 @@ void drawImageDMA(int x, int y, int width, int height, const u16 *image) { //
     }
 }
 
+void drawImageTransparent(int x, int y, int width, int height, const u16 *image) {
+    for (int r = 0; r < height; r++) {
+        for (int c = 0; c < width; c++) {
+            if (image[OFFSET(c, r, width)]) {
+                setPixel(x+c, y+r, image[OFFSET(c, r, width)]);
+            }
+        }
+    }
+}
+
 void fillScreenDMA(volatile u16 color) {
     DMA[3].src = &color;
     DMA[3].dst = videoBuffer;

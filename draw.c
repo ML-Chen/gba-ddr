@@ -22,8 +22,6 @@ void fullDrawAppState(AppState *state) {
     for (int i = 0; i < ARRSIZE; i++) {
         drawImageDMA(0, state->lefts[i], 32, 32, left);
         drawImageDMA(32, state->downs[i], 32, 32, down);
-        // drawImageDMA(64, state->ups[i], 32, 32, up);
-        // drawImageDMA(96, state->rights[i], 32, 32, right);
         drawImageDMA(64, state->As[i], 32, 32, A);
         drawImageDMA(96, state->Bs[i], 32, 32, B);
     }
@@ -37,9 +35,13 @@ void fullDrawAppState(AppState *state) {
         case 6: messageStr = "hwaiting!"; break;
         default: messageStr = "";
     }
+    char streakStr[20];
+    snprintf(streakStr, sizeof(streakStr), "%s%d", "Streak: ", state->streak);
     char scoreStr[20];
     snprintf(scoreStr, sizeof(scoreStr), "%s%d", "Score: ", state->points);
-    drawString(0, 140, messageStr, WHITE);
+
+    drawString(0, 130, messageStr, WHITE);
+    drawString(0, 140, streakStr, WHITE);
     drawString(0, 150, scoreStr, WHITE);
 }
 
@@ -50,12 +52,12 @@ void undrawAppState(AppState *state) {
     for (int i = 0; i < ARRSIZE; i++) {
         drawRectDMA(0, state->lefts[i], 32, 32, BLACK);
         drawRectDMA(32, state->downs[i], 32, 32, BLACK);
-        // drawRectDMA(64, state->ups[i], 32, 32, BLACK);
-        // drawRectDMA(96, state->rights[i], 32, 32, BLACK);
-        drawRectDMA(128, state->As[i], 32, 32, BLACK);
-        drawRectDMA(160, state->Bs[i], 32, 32, BLACK);
+        drawRectDMA(64, state->As[i], 32, 32, BLACK);
+        drawRectDMA(96, state->Bs[i], 32, 32, BLACK);
     }
-    drawRectDMA(0, 140, 70, 20, BLACK);
+    drawRectDMA(0, 130, 60, 8, BLACK);
+    drawRectDMA(0, 140, 60, 8, BLACK);
+    drawRectDMA(0, 150, 90, 8, BLACK); // erase text
 }
 
 // This function will be used to draw things that might have moved in a frame.

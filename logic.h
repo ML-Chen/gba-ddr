@@ -14,26 +14,30 @@
 #define ARRSIZE 3
 
 #define a appState
-#define n nextAppState
+#define n nextAppState 
 #define handleButton(lefts, lefts_i) \
     int dist = abs(n.lefts[n.lefts_i]); \
     if (dist == 0) { \
         n.message = 1; \
         n.streak++; \
-    } else if (dist <= 4) { \
+    } else if (dist <= 2) { \
         n.message = 2; \
         n.streak++; \
     } else if (dist <= 8) { \
         n.message = 3; \
+        n.streak++; \
     } else if (dist <= 16) { \
         n.message = 4; \
+        n.streak = 0; \
     } else if (dist <= 32) { \
         n.message = 5; \
+        n.streak = 0; \
     } else { \
         n.message = 6; \
+        n.streak = 0; \
     } \
-    n.points += (16 - dist) * 2; \
-    n.lefts[n.lefts_i] = max(160, n.lefts[dec(n.lefts_i)]) + randint(0, 50); \
+    n.points += (16 - dist) * 2 + n.streak; \
+    n.lefts[n.lefts_i] = max(160, n.lefts[dec(n.lefts_i)]) + randint(32, 80); \
     n.lefts_i = inc(n.lefts_i);
 
 typedef struct {
@@ -52,14 +56,10 @@ typedef struct {
     */
     int lefts[ARRSIZE];
     int downs[ARRSIZE];
-    int ups[ARRSIZE];
-    int rights[ARRSIZE];
     int As[ARRSIZE];
     int Bs[ARRSIZE];
     int lefts_i; // index of the minimum position in lefts (1 to 9)
     int downs_i;
-    int ups_i;
-    int rights_i;
     int As_i;
     int Bs_i;
     int message; // e.g., awesome! terrible!

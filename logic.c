@@ -7,19 +7,15 @@ void initializeAppState(AppState* appState) {
     appState->gameOver = 0;
     appState->lefts[0] = 0;
     appState->downs[0] = 0;
-    appState->ups[0] = 0;
-    appState->rights[0] = 0;
     appState->As[0] = 0;
     appState->Bs[0] = 0;
     for (int i = 1; i < ARRSIZE; i++) {
         appState->lefts[i] = a->lefts[i - 1] + randint(50, 160);
         appState->downs[i] = a->downs[i - 1] + randint(50, 160);
-        appState->ups[i] = a->ups[i - 1] + randint(50, 160);
-        appState->rights[i] = a->rights[i - 1] + randint(50, 160);
         appState->As[i] = a->As[i - 1] + randint(50, 160);
         appState->Bs[i] = a->Bs[i - 1] + randint(50, 160);
     }
-    a->lefts_i = a->downs_i = a->ups_i = a->rights_i = a->As_i = a->Bs_i = 1; a->message = a->streak = a->points = 0;
+    a->lefts_i = a->downs_i = a->As_i = a->Bs_i = 1; a->message = a->streak = a->points = 0;
 }
 
 // TA-TODO: Add any process functions for sub-elements of your app here.
@@ -64,12 +60,6 @@ AppState processAppState(AppState *currentAppState, u32 keysPressedBefore, u32 k
     if (KEY_JUST_PRESSED(BUTTON_DOWN, keysPressedNow, keysPressedBefore) || n.downs[n.downs_i] < -32) {
         handleButton(downs, downs_i)
     }
-    if (KEY_JUST_PRESSED(BUTTON_UP, keysPressedNow, keysPressedBefore) || n.ups[n.ups_i] < -32) {
-        handleButton(ups, ups_i)
-    }
-    if (KEY_JUST_PRESSED(BUTTON_RIGHT, keysPressedNow, keysPressedBefore) || n.rights[n.rights_i] < -32) {
-        handleButton(rights, rights_i)
-    }
     if (KEY_JUST_PRESSED(BUTTON_A, keysPressedNow, keysPressedBefore) || n.As[n.As_i] < -32) {
         handleButton(As, As_i)
     }
@@ -81,12 +71,12 @@ AppState processAppState(AppState *currentAppState, u32 keysPressedBefore, u32 k
         for (int i = 1; i < ARRSIZE; i++) {
             n.lefts[i]--;
             n.downs[i]--;
-            n.ups[i]--;
-            n.rights[i]--;
             n.As[i]--;
             n.Bs[i]--;
         }
-    } 
+    }
+
+    if (vBlankCounter > 5000) n.gameOver = 1;
 
     return nextAppState;
 }
