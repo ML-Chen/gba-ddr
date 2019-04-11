@@ -50,7 +50,7 @@ int main(void) {
                 waitForVBlank();
 
                 // TA-TODO: Draw the start state here.
-                drawFullScreenImageDMA(title2);
+                fillScreenDMA(BLACK);
 
                 state = APP_INIT;
                 break;

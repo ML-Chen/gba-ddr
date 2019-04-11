@@ -84,7 +84,7 @@ AppState processAppState(AppState *currentAppState, u32 keysPressedBefore, u32 k
             handleButton(Bs, Bs_i)
         }
 
-        if (vBlankCounter % 2 == 0) {
+        if (vBlankCounter % 1 == 0) {
             for (int i = 1; i < ARRSIZE; i++) {
                 n.lefts[i]--;
                 n.downs[i]--;
