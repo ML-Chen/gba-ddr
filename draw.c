@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "draw.h"
 #include "gba.h"
 #include "images/arrows.h"
@@ -23,9 +24,23 @@ void fullDrawAppState(AppState *state) {
         drawImageDMA(32, state->downs[i], 32, 32, down);
         // drawImageDMA(64, state->ups[i], 32, 32, up);
         // drawImageDMA(96, state->rights[i], 32, 32, right);
-        drawImageDMA(128, state->As[i], 32, 32, A);
-        drawImageDMA(160, state->Bs[i], 32, 32, B);
+        drawImageDMA(64, state->As[i], 32, 32, A);
+        drawImageDMA(96, state->Bs[i], 32, 32, B);
     }
+    char *messageStr;
+    switch (state->message) {
+        case 1: messageStr = "YABAI!"; break;
+        case 2: messageStr = "SUGOI!"; break;
+        case 3: messageStr = "YOSHI!"; break;
+        case 4: messageStr = "warui"; break;
+        case 5: messageStr = "ganbatte!"; break;
+        case 6: messageStr = "hwaiting!"; break;
+        default: messageStr = "";
+    }
+    char scoreStr[20];
+    snprintf(scoreStr, sizeof(scoreStr), "%s%d", "Score: ", state->points);
+    drawString(0, 140, messageStr, WHITE);
+    drawString(0, 150, scoreStr, WHITE);
 }
 
 // This function will be used to undraw (i.e. erase) things that might
@@ -40,6 +55,7 @@ void undrawAppState(AppState *state) {
         drawRectDMA(128, state->As[i], 32, 32, BLACK);
         drawRectDMA(160, state->Bs[i], 32, 32, BLACK);
     }
+    drawRectDMA(0, 140, 70, 20, BLACK);
 }
 
 // This function will be used to draw things that might have moved in a frame.

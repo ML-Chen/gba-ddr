@@ -37,6 +37,9 @@ int main(void) {
         // Load the current state of the buttons
         currentButtons = BUTTONS;
 
+        if (KEY_JUST_PRESSED(BUTTON_SELECT, currentButtons, previousButtons))
+            state = START;
+
         // TA-TODO: Manipulate the state machine below as needed.
         switch(state) {
             case START:

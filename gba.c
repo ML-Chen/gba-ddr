@@ -26,7 +26,7 @@ int randint(int min, int max) {
 }
 
 void setPixel(int x, int y, u16 color) { //
-    videoBuffer[y * 240 + x] = color;
+    videoBuffer[OFFSET(x, y, 240)] = color;
 }
 
 void drawRectDMA(int x, int y, int width, int height, volatile u16 color) { //
@@ -62,7 +62,7 @@ void fillScreenDMA(volatile u16 color) {
 void drawChar(int col, int row, char ch, u16 color) {
     for (int r = 0; r<8; r++) {
         for (int c=0; c<6; c++) {
-            if (fontdata_6x8[OFFSET(r, c, 6) + ch*48]) {
+            if (fontdata_6x8[OFFSET(c, r, 6) + ch*48]) {
                 setPixel(col+c, row+r, color);
             }
         }

@@ -16,7 +16,7 @@
 #define a appState
 #define n nextAppState
 #define handleButton(lefts, lefts_i) \
-    int dist = n.lefts[n.lefts_i]; \
+    int dist = abs(n.lefts[n.lefts_i]); \
     if (dist == 0) { \
         n.message = 1; \
         n.streak++; \
@@ -32,7 +32,7 @@
     } else { \
         n.message = 6; \
     } \
-    n.points += (16 - abs(dist)) * 2; \
+    n.points += (16 - dist) * 2; \
     n.lefts[n.lefts_i] = max(160, n.lefts[dec(n.lefts_i)]) + randint(0, 50); \
     n.lefts_i = inc(n.lefts_i);
 
