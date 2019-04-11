@@ -30,11 +30,11 @@ void setPixel(int x, int y, u16 color) { //
 }
 
 void drawRectDMA(int x, int y, int width, int height, volatile u16 color) { //
-    for (int row = 0; row < height; row++) {
-        if (y + row < 0 || y + row > 160) continue;
+    for (int row = y; row < y + height; row++) {
+        if (row < 0 || row > 160) continue;
         DMA[3].src = &color;
-        DMA[3].dst = &videoBuffer[OFFSET(x, row + y, 240)];
-        DMA[3].cnt = width | DMA_ON | DMA_SOURCE_FIXED;
+        DMA[3].dst = &videoBuffer[OFFSET(x, row, 240)];
+        DMA[3].cnt = width | DMA_ON | DMA_SOURCE_FIXED | DMA_DESTINATION_INCREMENT;
     }
 }
 
@@ -45,10 +45,10 @@ void drawFullScreenImageDMA(const u16 *image) { //
 }
 
 void drawImageDMA(int x, int y, int width, int height, const u16 *image) { //
-    for (int row = 0; row < height; row++) {
-        if (y + row < 0 || y + row > 160) continue;
-        DMA[3].src = image + (row * width);
-        DMA[3].dst = &videoBuffer[OFFSET(x, row + y, 240)];
+    for (int row = y; row < y + height; row++) {
+        if (row < 0 || row > 160) continue;
+        DMA[3].src = &image[OFFSET(0, row - y, width)];
+        DMA[3].dst = &videoBuffer[OFFSET(x, row, 240)];
         DMA[3].cnt = width | DMA_ON | DMA_SOURCE_INCREMENT | DMA_DESTINATION_INCREMENT;
     }
 }

@@ -18,9 +18,9 @@ Starting Mednafen 0.9.48
    Loading override settings from "/cs2110/.mednafen/pgconfig/Game.gba.cfg"...
     Failed: Error opening file "/cs2110/.mednafen/pgconfig/Game.gba.cfg": No such file or directory
 
-   ROM:       175KiB
-   ROM CRC32: 0xb5d6305c
-   ROM MD5:   0xc2c6f7298d7b5e38a8baaa90e5fc2be0
+   ROM:       179KiB
+   ROM CRC32: 0x939f6353
+   ROM MD5:   0x386a782074b0babb6d925a4cc678c7f5
 
   Loading custom palette from "/cs2110/.mednafen/palettes/gba.pal"...
    Error: Error opening file "/cs2110/.mednafen/palettes/gba.pal": No such file or directory
@@ -49,6 +49,3 @@ Initializing video...
   Checking maximum texture size...
    Apparently it is at least: 8192 x 8192
   Using GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV for texture source data.
-
-Signal has been caught and dealt with: SIGINT
-How DARE you interrupt me!
