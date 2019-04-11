@@ -40,7 +40,7 @@ void undrawAppState(AppState *state) {
     if (state->ingame) {
         for (int i = 0; i < ARRSIZE; i++) {
             drawRectDMA(64, state->lefts[i], 32, 32, BLACK);
-            drawRectDMA(96, state->rights[i], 32, 32, BLACK);
+            drawRectDMA(96, state->downs[i], 32, 32, BLACK);
             drawRectDMA(0, state->As[i], 32, 32, BLACK);
             drawRectDMA(32, state->Bs[i], 32, 32, BLACK);
         }
@@ -60,7 +60,7 @@ void drawAppState(AppState *state) {
     } else {
         for (int i = 0; i < ARRSIZE; i++) {
             drawImageDMA(64, state->lefts[i], 32, 32, left);
-            drawImageDMA(96, state->rights[i], 32, 32, right);
+            drawImageDMA(96, state->downs[i], 32, 32, down);
             drawImageDMA(0, state->As[i], 32, 32, A);
             drawImageDMA(32, state->Bs[i], 32, 32, B);
         }

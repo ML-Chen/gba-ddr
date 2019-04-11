@@ -65,11 +65,11 @@ typedef struct {
     int ingame; // 0 if we're still on the title screen, 1 otherwise
     Bouncy title;
     int lefts[ARRSIZE];
-    int rights[ARRSIZE];
+    int downs[ARRSIZE];
     int As[ARRSIZE];
     int Bs[ARRSIZE];
     int lefts_i; // index of the minimum position in lefts (1 to 9)
-    int rights_i;
+    int downs_i;
     int As_i;
     int Bs_i;
     int message; // e.g., awesome! terrible!
