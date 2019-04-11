@@ -20,10 +20,22 @@
 void fullDrawAppState(AppState *state) {
     // TA-TODO: IMPLEMENT.
     for (int i = 0; i < ARRSIZE; i++) {
-        drawImageDMA(0, state->lefts[i], 32, 32, left);
-        drawImageDMA(32, state->downs[i], 32, 32, down);
-        drawImageDMA(64, state->As[i], 32, 32, A);
-        drawImageDMA(96, state->Bs[i], 32, 32, B);
+        if (state->lefts[i] < 32)
+            drawImageTransparent(0, state->lefts[i], 32, 32, left);
+        else
+            drawImageDMA(0, state->lefts[i], 32, 32, left);
+        if (state->downs[i] < 32)
+            drawImageTransparent(32, state->downs[i], 32, 32, down);
+        else
+            drawImageDMA(32, state->downs[i], 32, 32, down);
+        if (state->As[i] < 32)
+            drawImageTransparent(64, state->As[i], 32, 32, A);
+        else
+            drawImageDMA(64, state->As[i], 32, 32, A);
+        if (state->Bs[i] < 32)
+            drawImageTransparent(96, state->Bs[i], 32, 32, B);
+        else
+            drawImageDMA(96, state->Bs[i], 32, 32, B);
     }
     char *messageStr;
     switch (state->message) {

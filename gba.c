@@ -53,6 +53,7 @@ void drawImageDMA(int x, int y, int width, int height, const u16 *image) { //
     }
 }
 
+// The tearing if we use this is unacceptable.
 void drawImageTransparent(int x, int y, int width, int height, const u16 *image) {
     for (int r = 0; r < height; r++) {
         for (int c = 0; c < width; c++) {
