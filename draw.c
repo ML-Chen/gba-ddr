@@ -39,10 +39,10 @@ void undrawAppState(AppState *state) {
     }
     if (state->ingame) {
         for (int i = 0; i < ARRSIZE; i++) {
-            drawRectDMA(0, state->lefts[i], 32, 32, BLACK);
-            drawRectDMA(32, state->downs[i], 32, 32, BLACK);
-            drawRectDMA(64, state->As[i], 32, 32, BLACK);
-            drawRectDMA(96, state->Bs[i], 32, 32, BLACK);
+            drawRectDMA(64, state->lefts[i], 32, 32, BLACK);
+            drawRectDMA(96, state->downs[i], 32, 32, BLACK);
+            drawRectDMA(0, state->As[i], 32, 32, BLACK);
+            drawRectDMA(32, state->Bs[i], 32, 32, BLACK);
         }
         drawRectDMA(0, 130, 60, 8, BLACK);
         drawRectDMA(0, 140, 60, 8, BLACK);
@@ -59,10 +59,10 @@ void drawAppState(AppState *state) {
         // drawImageDMA(1, 1, TITLE2_WIDTH, TITLE2_HEIGHT, title2);
     } else {
         for (int i = 0; i < ARRSIZE; i++) {
-            drawImageDMA(0, state->lefts[i], 32, 32, left);
-            drawImageDMA(32, state->downs[i], 32, 32, down);
-            drawImageDMA(64, state->As[i], 32, 32, A);
-            drawImageDMA(96, state->Bs[i], 32, 32, B);
+            drawImageDMA(64, state->lefts[i], 32, 32, left);
+            drawImageDMA(96, state->downs[i], 32, 32, down);
+            drawImageDMA(0, state->As[i], 32, 32, A);
+            drawImageDMA(32, state->Bs[i], 32, 32, B);
         }
         char *messageStr;
         switch (state->message) {

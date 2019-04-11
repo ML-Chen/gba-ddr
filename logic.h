@@ -38,7 +38,7 @@
         n.streak = 0; \
     } \
     n.points += (16 - dist) * 2 + n.streak; \
-    n.lefts[n.lefts_i] = max(160, n.lefts[dec(n.lefts_i)]) + randint(32, 80); \
+    n.lefts[n.lefts_i] = max(160 + n.lefts[dec(n.lefts_i)] % 32, n.lefts[dec(n.lefts_i)]) + randint(1, 5) * 32; \
     n.lefts_i = inc(n.lefts_i);
 
 typedef struct {

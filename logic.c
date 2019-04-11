@@ -12,11 +12,15 @@ void initializeAppState(AppState* appState) {
     appState->downs[0] = 0;
     appState->As[0] = 0;
     appState->Bs[0] = 0;
-    for (int i = 1; i < ARRSIZE; i++) {
-        appState->lefts[i] = a->lefts[i - 1] + randint(50, 160);
-        appState->downs[i] = a->downs[i - 1] + randint(50, 160);
-        appState->As[i] = a->As[i - 1] + randint(50, 160);
-        appState->Bs[i] = a->Bs[i - 1] + randint(50, 160);
+    appState->lefts[1] = 64 + randint(1, 5) * 32;
+    appState->downs[1] = 64 + randint(1, 5) * 32;
+    appState->As[1] = 64 + randint(1, 5) * 32;
+    appState->Bs[1] = 64 + randint(1, 5) * 32;
+    for (int i = 2; i < ARRSIZE; i++) {
+        appState->lefts[i] = a->lefts[i - 1] + randint(1, 5) * 32;
+        appState->downs[i] = a->downs[i - 1] + randint(1, 5) * 32;
+        appState->As[i] = a->As[i - 1] + randint(1, 5) * 32;
+        appState->Bs[i] = a->Bs[i - 1] + randint(1, 5) * 32;
     }
     a->lefts_i = a->downs_i = a->As_i = a->Bs_i = 1;
     a->ingame = a->message = a->streak = a->points = a->time = 0;
