@@ -61,19 +61,24 @@ int main(void) {
                 int y = 1;
                 int vx = 1; // velocity in the x direction
                 int vy = 1;
-                while (1) {
+                int flag = 1;
+                while (flag) {
                     waitForVBlank();
                     if (KEY_JUST_PRESSED(BUTTON_SELECT, currentButtons, previousButtons)) {
                         state = START;
+                        flag = 0;
                         break;
                     }
                     if (anyButtonPressed(currentButtons, previousButtons)) {
                         state = APP_INIT;
+                        flag = 0;
                         break;
                     }
-                    drawImageDMA(x, y, 240, 160 - y, title2);
-                    drawRectDMA(x - vx, y, 240 - vx, abs(vx), BLACK);
-                    drawRectDMA(x, y - vy, abs(vy), 160 - vy, BLACK);
+                    drawImageDMA(x, y, TITLE2_WIDTH, TITLE2_HEIGHT, title2);
+                    drawRectDMA(x - 1, y, 1, TITLE2_HEIGHT, BLACK);
+                    drawRectDMA(x + TITLE2_WIDTH + 1, y, 1, TITLE2_HEIGHT, BLACK);
+                    drawRectDMA(x, y - 1, TITLE2_WIDTH, 1, BLACK);
+                    drawRectDMA(x, y + TITLE2_HEIGHT + 1, TITLE2_WIDTH, 1, BLACK);
 
                     if (x < 0 || x + TITLE2_WIDTH > 240) vx *= -1;
                     if (y < 0 || y + TITLE2_HEIGHT > 160) vy *= -1;
