@@ -70,14 +70,16 @@ int main(void) {
                 state = APP;
                 break;
             case APP:
-                if (!currentAppState.ingame && anyButtonPressed(currentButtons, previousButtons))
-                    currentAppState.ingame = 1;
-
                 // Process the app for one frame, store the next state
                 nextAppState = processAppState(&currentAppState, previousButtons, currentButtons);
 
                 // Wait for VBlank before we do any drawing.
                 waitForVBlank();
+
+                if (!currentAppState.ingame && anyButtonPressed(currentButtons, previousButtons)) {
+                    nextAppState.ingame = 1;
+                    fillScreenDMA(BLACK);
+                }
 
                 // Undraw the previous state
                 undrawAppState(&currentAppState);
