@@ -140,7 +140,6 @@ void setPixel(int x, int y, u16 color);
 void drawRectDMA(int x, int y, int width, int height, volatile u16 color);
 void drawFullScreenImageDMA(const u16 *image);
 void drawImageDMA(int x, int y, int width, int height, const u16 *image);
-void drawImageTransparent(int x, int y, int width, int height, const u16 *image);
 void fillScreenDMA(volatile u16 color);
 void drawChar(int col, int row, char ch, u16 color);
 void drawString(int col, int row, char *str, u16 color);
