@@ -9,20 +9,20 @@ void initializeAppState(AppState* appState) {
 
     appState->gameOver = 0;
     appState->lefts[0] = 0;
-    appState->downs[0] = 0;
+    appState->rights[0] = 0;
     appState->As[0] = 0;
     appState->Bs[0] = 0;
     appState->lefts[1] = 64 + randint(1, 5) * 32;
-    appState->downs[1] = 64 + randint(1, 5) * 32;
+    appState->rights[1] = 64 + randint(1, 5) * 32;
     appState->As[1] = 64 + randint(1, 5) * 32;
     appState->Bs[1] = 64 + randint(1, 5) * 32;
     for (int i = 2; i < ARRSIZE; i++) {
         appState->lefts[i] = a->lefts[i - 1] + randint(1, 5) * 32;
-        appState->downs[i] = a->downs[i - 1] + randint(1, 5) * 32;
+        appState->rights[i] = a->rights[i - 1] + randint(1, 5) * 32;
         appState->As[i] = a->As[i - 1] + randint(1, 5) * 32;
         appState->Bs[i] = a->Bs[i - 1] + randint(1, 5) * 32;
     }
-    a->lefts_i = a->downs_i = a->As_i = a->Bs_i = 1;
+    a->lefts_i = a->rights_i = a->As_i = a->Bs_i = 1;
     a->ingame = a->message = a->streak = a->points = a->time = 0;
 }
 
@@ -74,8 +74,8 @@ AppState processAppState(AppState *currentAppState, u32 keysPressedBefore, u32 k
         if (KEY_JUST_PRESSED(BUTTON_LEFT, keysPressedNow, keysPressedBefore) || n.lefts[n.lefts_i] < -32) {
             handleButton(lefts, lefts_i)
         }
-        if (KEY_JUST_PRESSED(BUTTON_DOWN, keysPressedNow, keysPressedBefore) || n.downs[n.downs_i] < -32) {
-            handleButton(downs, downs_i)
+        if (KEY_JUST_PRESSED(BUTTON_RIGHT, keysPressedNow, keysPressedBefore) || n.rights[n.rights_i] < -32) {
+            handleButton(rights, rights_i)
         }
         if (KEY_JUST_PRESSED(BUTTON_A, keysPressedNow, keysPressedBefore) || n.As[n.As_i] < -32) {
             handleButton(As, As_i)
@@ -87,7 +87,7 @@ AppState processAppState(AppState *currentAppState, u32 keysPressedBefore, u32 k
         if (vBlankCounter % 2 == 0) {
             for (int i = 1; i < ARRSIZE; i++) {
                 n.lefts[i]--;
-                n.downs[i]--;
+                n.rights[i]--;
                 n.As[i]--;
                 n.Bs[i]--;
             }
