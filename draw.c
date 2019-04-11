@@ -19,7 +19,30 @@
 // including the background and whatnot.
 void fullDrawAppState(AppState *state) {
     // TA-TODO: IMPLEMENT.
+    fillScreenDMA(BLACK);
+    drawAppState(state);
+}
+
+// This function will be used to undraw (i.e. erase) things that might
+// move in a frame. E.g. in a Snake game, erase the Snake, the food & the score.
+void undrawAppState(AppState *state) {
+    // TA-TODO: IMPLEMENT.
     for (int i = 0; i < ARRSIZE; i++) {
+        drawRectDMA(0, state->lefts[i], 32, 32, BLACK);
+        drawRectDMA(32, state->downs[i], 32, 32, BLACK);
+        drawRectDMA(64, state->As[i], 32, 32, BLACK);
+        drawRectDMA(96, state->Bs[i], 32, 32, BLACK);
+    }
+    drawRectDMA(0, 130, 60, 8, BLACK);
+    drawRectDMA(0, 140, 60, 8, BLACK);
+    drawRectDMA(0, 150, 90, 8, BLACK); // erase text
+}
+
+// This function will be used to draw things that might have moved in a frame.
+// For example, in a Snake game, draw the snake, the food, the score.
+void drawAppState(AppState *state) {
+    // TA-TODO: IMPLEMENT.
+        for (int i = 0; i < ARRSIZE; i++) {
         drawImageDMA(0, state->lefts[i], 32, 32, left);
         drawImageDMA(32, state->downs[i], 32, 32, down);
         drawImageDMA(64, state->As[i], 32, 32, A);
@@ -43,26 +66,4 @@ void fullDrawAppState(AppState *state) {
     drawString(0, 130, messageStr, WHITE);
     drawString(0, 140, streakStr, WHITE);
     drawString(0, 150, scoreStr, WHITE);
-}
-
-// This function will be used to undraw (i.e. erase) things that might
-// move in a frame. E.g. in a Snake game, erase the Snake, the food & the score.
-void undrawAppState(AppState *state) {
-    // TA-TODO: IMPLEMENT.
-    for (int i = 0; i < ARRSIZE; i++) {
-        drawRectDMA(0, state->lefts[i], 32, 32, BLACK);
-        drawRectDMA(32, state->downs[i], 32, 32, BLACK);
-        drawRectDMA(64, state->As[i], 32, 32, BLACK);
-        drawRectDMA(96, state->Bs[i], 32, 32, BLACK);
-    }
-    drawRectDMA(0, 130, 60, 8, BLACK);
-    drawRectDMA(0, 140, 60, 8, BLACK);
-    drawRectDMA(0, 150, 90, 8, BLACK); // erase text
-}
-
-// This function will be used to draw things that might have moved in a frame.
-// For example, in a Snake game, draw the snake, the food, the score.
-void drawAppState(AppState *state) {
-    // TA-TODO: IMPLEMENT.
-    fullDrawAppState(state);
 }

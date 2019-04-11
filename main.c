@@ -44,7 +44,7 @@ int main(void) {
             state = START;
 
         // TA-TODO: Manipulate the state machine below as needed.
-        switch(state) {
+        switch (state) {
             case START:
                 // Wait for VBlank
                 waitForVBlank();
@@ -54,25 +54,36 @@ int main(void) {
 
                 state = START_NODRAW;
                 break;
-            case START_NODRAW:
+            case START_NODRAW: {
                 // TA-TODO: Check for a button press here to start the app.
                 // Start the app by switching the state to APP_INIT.
-                if (anyButtonPressed(currentButtons, previousButtons)) {
-                    state = APP_INIT;
-                    int x = 1;
-                    int y = 1;
-                    while (y <= 160) {
-                        waitForVBlank();
-                        drawImageDMA(x, y, 240, 160 - y, title2);
-                        drawRectDMA(x - 1, y, 240 - x, 1, BLACK);
-                        drawRectDMA(x, y - 1, 1, 160 - y, BLACK);
-                        x++;
-                        y++;
+                int x = 1; // initial position
+                int y = 1;
+                int vx = 1; // velocity in the x direction
+                int vy = 1;
+                while (1) {
+                    waitForVBlank();
+                    if (KEY_JUST_PRESSED(BUTTON_SELECT, currentButtons, previousButtons)) {
+                        state = START;
+                        break;
                     }
-                    fillScreenDMA(BLACK);
+                    if (anyButtonPressed(currentButtons, previousButtons)) {
+                        state = APP_INIT;
+                        break;
+                    }
+                    drawImageDMA(x, y, 240, 160 - y, title2);
+                    drawRectDMA(x - vx, y, 240 - vx, abs(vx), BLACK);
+                    drawRectDMA(x, y - vy, abs(vy), 160 - vy, BLACK);
+
+                    if (x < 0 || x + TITLE2_WIDTH > 240) vx *= -1;
+                    if (y < 0 || y + TITLE2_HEIGHT > 160) vy *= -1;
+
+                    x += vx;
+                    y += vy;
                 }
 
                 break;
+            }
             case APP_INIT:
                 // Initialize the app. Switch to the APP state.
                 initializeAppState(&currentAppState);

@@ -63,6 +63,7 @@ extern volatile unsigned short *videoBuffer;
 // macro to check if the button was pressed in the inputs.
 #define KEY_JUST_PRESSED(key, buttons, oldbuttons) (!KEY_DOWN(key, buttons) && KEY_DOWN(key, oldbuttons))
 
+// "any button" means A, B, the arrow keys, or START
 #define anyButtonPressed(buttons, oldbuttons) (KEY_JUST_PRESSED(BUTTON_A, buttons, oldbuttons) || KEY_JUST_PRESSED(BUTTON_B, buttons, oldbuttons) || KEY_JUST_PRESSED(BUTTON_LEFT, buttons, oldbuttons) || KEY_JUST_PRESSED(BUTTON_RIGHT, buttons, oldbuttons) || KEY_JUST_PRESSED(BUTTON_UP, buttons, oldbuttons) || KEY_JUST_PRESSED(BUTTON_LEFT, buttons, oldbuttons) || KEY_JUST_PRESSED(BUTTON_START, buttons, oldbuttons))
 
 // ---------------------------------------------------------------------------
