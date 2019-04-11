@@ -5,7 +5,7 @@ void initializeAppState(AppState* appState) {
     // TA-TODO: Initialize everything that's part of this AppState struct here.
     // Suppose the struct contains random values, make sure everything gets
     // the value it should have when the app begins.
-    appState->title->x = appState->title->y = appState->title->vx = appState->title->vy = 1;
+    appState->title.x = appState->title.y = appState->title.vx = appState->title.vy = 1;
 
     appState->gameOver = 0;
     appState->lefts[0] = 0;
@@ -59,13 +59,13 @@ AppState processAppState(AppState *currentAppState, u32 keysPressedBefore, u32 k
     AppState nextAppState = *currentAppState;
 
     if (!currentAppState->ingame) {
-        int x = n.title->x;
-        int y = n.title->y;
-        if (x < 0 || x + TITLE2_WIDTH > 240) n.title->vx *= -1;
-        if (y < 0 || y + TITLE2_HEIGHT > 160) n.title->vy *= -1;
+        int x = n.title.x;
+        int y = n.title.y;
+        if (x < 0 || x + TITLE2_WIDTH > 240) n.title.vx *= -1;
+        if (y < 0 || y + TITLE2_HEIGHT > 160) n.title.vy *= -1;
 
-        n.title->x += n.title->vx;
-        n.title->y += n.title->vy;
+        n.title.x += n.title.vx;
+        n.title.y += n.title.vy;
     } else {
         if (KEY_JUST_PRESSED(BUTTON_LEFT, keysPressedNow, keysPressedBefore) || n.lefts[n.lefts_i] < -32) {
             handleButton(lefts, lefts_i)

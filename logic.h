@@ -63,7 +63,7 @@ typedef struct {
     *
     */
     int ingame; // 0 if we're still on the title screen, 1 otherwise
-    Bouncy *title;
+    Bouncy title;
     int lefts[ARRSIZE];
     int downs[ARRSIZE];
     int As[ARRSIZE];

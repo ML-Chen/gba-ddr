@@ -29,8 +29,8 @@ void fullDrawAppState(AppState *state) {
 void undrawAppState(AppState *state) {
     // TA-TODO: IMPLEMENT.
     if (!state->ingame) {
-        int x = state->title->x;
-        int y = state->title->y;
+        int x = state->title.x;
+        int y = state->title.y;
         
         drawRectDMA(x - 1, y, 1, TITLE2_HEIGHT, BLACK);
         drawRectDMA(x + TITLE2_WIDTH + 1, y, 1, TITLE2_HEIGHT, BLACK);
@@ -55,9 +55,8 @@ void undrawAppState(AppState *state) {
 void drawAppState(AppState *state) {
     // TA-TODO: IMPLEMENT.
     if (!state->ingame) {
-        // drawImageDMA(state->title->x, state->title->y, TITLE2_WIDTH, TITLE2_HEIGHT, title2);
-        drawImageDMA(1, 1, TITLE2_WIDTH, TITLE2_HEIGHT, title2);
-        // For some reason that makes the image show up while the line above does not
+        drawImageDMA(state->title.x, state->title.y, TITLE2_WIDTH, TITLE2_HEIGHT, title2);
+        // drawImageDMA(1, 1, TITLE2_WIDTH, TITLE2_HEIGHT, title2);
     } else {
         for (int i = 0; i < ARRSIZE; i++) {
             drawImageDMA(0, state->lefts[i], 32, 32, left);
