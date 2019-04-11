@@ -52,40 +52,11 @@ int main(void) {
                 // TA-TODO: Draw the start state here.
                 drawFullScreenImageDMA(title2);
 
-                state = START_NODRAW;
+                state = APP_INIT;
                 break;
             case START_NODRAW: {
                 // TA-TODO: Check for a button press here to start the app.
                 // Start the app by switching the state to APP_INIT.
-                int x = 1; // initial position
-                int y = 1;
-                int vx = 1; // velocity in the x direction
-                int vy = 1;
-                int flag = 1;
-                while (flag) {
-                    waitForVBlank();
-                    if (KEY_JUST_PRESSED(BUTTON_SELECT, currentButtons, previousButtons)) {
-                        state = START;
-                        flag = 0;
-                        break;
-                    }
-                    if (anyButtonPressed(currentButtons, previousButtons)) {
-                        state = APP_INIT;
-                        flag = 0;
-                        break;
-                    }
-                    drawImageDMA(x, y, TITLE2_WIDTH, TITLE2_HEIGHT, title2);
-                    drawRectDMA(x - 1, y, 1, TITLE2_HEIGHT, BLACK);
-                    drawRectDMA(x + TITLE2_WIDTH + 1, y, 1, TITLE2_HEIGHT, BLACK);
-                    drawRectDMA(x, y - 1, TITLE2_WIDTH, 1, BLACK);
-                    drawRectDMA(x, y + TITLE2_HEIGHT + 1, TITLE2_WIDTH, 1, BLACK);
-
-                    if (x < 0 || x + TITLE2_WIDTH > 240) vx *= -1;
-                    if (y < 0 || y + TITLE2_HEIGHT > 160) vy *= -1;
-
-                    x += vx;
-                    y += vy;
-                }
 
                 break;
             }
@@ -99,6 +70,9 @@ int main(void) {
                 state = APP;
                 break;
             case APP:
+                if (!currentAppState.ingame && anyButtonPressed(currentButtons, previousButtons))
+                    currentAppState.ingame = 1;
+
                 // Process the app for one frame, store the next state
                 nextAppState = processAppState(&currentAppState, previousButtons, currentButtons);
 

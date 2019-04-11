@@ -14,6 +14,7 @@
 #define ARRSIZE 3
 
 #define a appState
+#define c currentAppState
 #define n nextAppState 
 #define handleButton(lefts, lefts_i) \
     int dist = abs(n.lefts[n.lefts_i]); \
@@ -41,6 +42,13 @@
     n.lefts_i = inc(n.lefts_i);
 
 typedef struct {
+    int x;
+    int y;
+    int vx;
+    int vy;
+} Bouncy;
+
+typedef struct {
     // Store whether or not the game is over in this member:
     int gameOver;
 
@@ -54,6 +62,8 @@ typedef struct {
     * int points;
     *
     */
+    int ingame; // 0 if we're still on the title screen, 1 otherwise
+    Bouncy *title;
     int lefts[ARRSIZE];
     int downs[ARRSIZE];
     int As[ARRSIZE];
@@ -65,6 +75,7 @@ typedef struct {
     int message; // e.g., awesome! terrible!
     int streak;
     int points;
+    int time;
 } AppState;
 
 /*
