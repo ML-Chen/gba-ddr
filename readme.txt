@@ -1,3 +1,0 @@
-踊り踊り革命 is a rhythm game inspired by the musical masterpiece 4'33" by John Cage.
-
-The game starts with a bouncing どりどり革命 logo. Press any button (besides L, R, or select) to continue. Once gameplay begins, press appropriate buttons in time to the beat (that is, when the corresponding icons reach the top of the screen). エ represents the A button, and ビ represents the B button. After 5000 vBlanks (which I think is about 1.5 minutes), the game will end and present you with your spirit Pokémon (based on your score), which can be Mewtwo, Rotom, Porygon-Z, or Bidoof. Press any button (besides L or R) to return to the start screen.
