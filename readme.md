@@ -6,11 +6,11 @@ The game starts with a bouncing どりどり革命 logo (tbh it should probably 
 
 <img src="images/Gameplay.gif" alt="Gameplay" width="400" height="269"/>
 
-(can't press buttons while recording with Gyazo)
+(can't press buttons while recording with Gyazo, so I'm just letting those arrows fly and losing points)
 
 # Build in Ubuntu
 
-When developing this, I used a Docker file specific to our class, and I'm not sure whether I'm allowed to divulge that. Here's a set of alternate instructions that could work.
+When developing this, I tested this on a Docker image specific to our class. Here's a set of alternate instructions that should work.
 
 ```bash
 sudo add-apt-repository ppa:sergio-br2/vbam-trunk
@@ -23,13 +23,13 @@ If you're using Windows Subsystem for Linux, install and launch [Xming](https://
 export DISPLAY=:0
 ```
 
-Then, `cd` to this directory, and run `make vba` or `visualboyadvance-m Game.gba`.
+Then, `cd` to this directory, and run `make vba` or `vbam Game.gba`. You could also try `visualboyadvance-m Game.gba`, but none of the controls seem to work in that emulator.
 
-If the above doesn't work, these commands could help:
+If the above doesn't work, these commands could help, but I don't think they should be necessary:
 ```bash
 sudo add-apt-repository ppa:tricksterguy87/ppa-gt-cs2110
 sudo apt update
 sudo apt install gcc-arm-none-eabi cs2110-vbam-sdl mednafen cs2110-gba-linker-script nin10kit
 ```
 
-However, none of the buttons seem to do anything. Also, the framerate is about five or ten times too high. YMMV.
+Also, framerate is about five or ten times too high. Consider this to be Ultra Nightmare Lunatic+ mode.
